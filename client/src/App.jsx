@@ -2,14 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Terminal from "./components/terminal";
 import FileTree from "./components/tree";
+import ChatMentor from "./components/ChatMentor"; 
 import socket from "./socket";
 import AceEditor from "react-ace";
-
 import { getFileMode } from "./utils/getFileMode";
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
-import "ace-builds/src-noconflict/theme-twilight"; 
+import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
         });
         setTimeout(() => {
           setIsSaving(false);
-          setSelectedFileContent(code); 
+          setSelectedFileContent(code);
         }, 500);
       }, 5000);
 
@@ -47,7 +47,6 @@ function App() {
   useEffect(() => {
     setCode(selectedFileContent);
   }, [selectedFileContent]);
-
   const getFileTree = async () => {
     const response = await fetch("http://localhost:9000/files");
     const result = await response.json();
@@ -114,6 +113,9 @@ function App() {
             <p className="placeholder">Select a file to start editing.</p>
           )}
         </div>
+      </div>
+      <div className="chat-mentor-container">
+        <ChatMentor code={selectedFileContent} />
       </div>
       <div className="terminal-container">
         <Terminal />

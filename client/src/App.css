@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .playground-container {
   display: flex;
   flex-direction: column;
@@ -59,4 +65,123 @@
   height: 20%;
   padding: 10px;
   overflow-y: auto;
+}
+
+.chat-mentor-container {
+  flex: 0 1 35%; 
+  background: #ffffff;
+  padding: 15px;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chat-mentor-container h2 {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.chat-mentor-container .message-list {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 400px; 
+  margin-bottom: 20px;
+}
+
+.chat-mentor-container .message {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chat-mentor-container .message.user {
+  background-color: #cce4ff;
+  color: #1a73e8;
+  align-self: flex-end;
+}
+
+.chat-mentor-container .message.bot {
+  background-color: #f1f1f1;
+  color: #333;
+  align-self: flex-start;
+}
+
+.chat-mentor-container .input-form {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.chat-mentor-container .input-form input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  background-color: #f4f4f4;
+}
+
+.chat-mentor-container .input-form input:focus {
+  border-color: #007bff;
+}
+
+.chat-mentor-container .input-form button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.chat-mentor-container .input-form button:hover {
+  background-color: #0056b3;
+}
+
+.chat-mentor-container .input-form button:focus {
+  outline: none;
+}
+
+.chat-mentor-container .loading {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #888;
+}
+
+.chat-mentor-container .chat-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  flex: 1;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; 
+}
+
+.chat-mentor-container .chat-box input {
+  border: none;
+  padding: 12px;
+  font-size: 1em;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-mentor-container .chat-box input:focus {
+  outline: none;
+  border: 1px solid #5b9bd5;
 }
