@@ -1,27 +1,62 @@
 .playground-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
-.editor-container {
-  min-height: 60vh;
+.app-header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .files {
-  padding: 20px;
-  width: 10vw;
+  width: 300px;
+  padding: 10px;
+  background: #fafafa;
+  border-right: 1px solid #ddd;
+  height: 100%;
+  overflow-y: auto;
 }
 
-.editor {
-  width: 90vw;
+.editor-container {
+  flex: 1;
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.file-node {
-  cursor: pointer;
+.file-info {
+  margin-bottom: 10px;
 }
 
-li {
-  list-style: none;
-  line-height: 24px;
+.placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.saving {
+  color: orange;
+}
+
+.saved {
+  color: green;
+}
+
+.terminal-container {
+  background: #272822;
+  color: #fff;
+  height: 20%;
+  padding: 10px;
+  overflow-y: auto;
 }

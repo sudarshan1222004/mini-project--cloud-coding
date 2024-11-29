@@ -9,6 +9,7 @@ import { getFileMode } from "./utils/getFileMode";
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-twilight"; 
 import "ace-builds/src-noconflict/ext-language_tools";
 
 function App() {
@@ -16,20 +17,26 @@ function App() {
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedFileContent, setSelectedFileContent] = useState("");
   const [code, setCode] = useState("");
+  const [theme, setTheme] = useState("github");
+  const [isSaving, setIsSaving] = useState(false);
 
   const isSaved = selectedFileContent === code;
 
   useEffect(() => {
     if (!isSaved && code) {
       const timer = setTimeout(() => {
+        setIsSaving(true);
         socket.emit("file:change", {
           path: selectedFile,
           content: code,
         });
-      }, 5 * 1000);
-      return () => {
-        clearTimeout(timer);
-      };
+        setTimeout(() => {
+          setIsSaving(false);
+          setSelectedFileContent(code); 
+        }, 500);
+      }, 5000);
+
+      return () => clearTimeout(timer);
     }
   }, [code, selectedFile, isSaved]);
 
@@ -62,14 +69,18 @@ function App() {
 
   useEffect(() => {
     socket.on("file:refresh", getFileTree);
-    return () => {
-      socket.off("file:refresh", getFileTree);
-    };
-  }, []);
+    return () => socket.off("file:refresh", getFileTree);
+  }, [socket.io]);
 
   return (
     <div className="playground-container">
-      <div className="editor-container">
+      <header className="app-header">
+        <h1>Code on Cloud</h1>
+        <button onClick={() => setTheme(theme === "github" ? "twilight" : "github")}>
+          Toggle Theme
+        </button>
+      </header>
+      <div className="main-container">
         <div className="files">
           <FileTree
             onSelect={(path) => {
@@ -79,19 +90,29 @@ function App() {
             tree={fileTree}
           />
         </div>
-        <div className="editor">
-          {selectedFile && (
-            <p>
-              {selectedFile.replaceAll("/", " > ")}{" "}
-              {isSaved ? "Saved" : "Unsaved"}
-            </p>
+        <div className="editor-container">
+          {selectedFile ? (
+            <>
+              <div className="file-info">
+                <p>
+                  {selectedFile.replaceAll("/", " > ")}{" "}
+                  <span className={isSaving ? "saving" : "saved"}>
+                    {isSaving ? "Saving..." : isSaved ? "Saved" : ""}
+                  </span>
+                </p>
+              </div>
+              <AceEditor
+                width="100%"
+                height="70vh"
+                mode={getFileMode({ selectedFile })}
+                theme={theme}
+                value={code}
+                onChange={(e) => setCode(e)}
+              />
+            </>
+          ) : (
+            <p className="placeholder">Select a file to start editing.</p>
           )}
-          <AceEditor
-            width="100%"
-            mode={getFileMode({ selectedFile })}
-            value={code}
-            onChange={(e) => setCode(e)}
-          />
         </div>
       </div>
       <div className="terminal-container">
