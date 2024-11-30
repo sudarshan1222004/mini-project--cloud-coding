@@ -7,7 +7,6 @@ const ChatMentor = ({ code }) => {
   const [hintCount, setHintCount] = useState(0); 
   const [loading, setLoading] = useState(false);
 
-  // Function to call GPT-4 API
   const callGPT4 = async (message, codeContext, hintCount) => {
     const systemPrompt = `
       You are a helpful AI mentor for developers working on a codebase.
@@ -31,7 +30,7 @@ const ChatMentor = ({ code }) => {
         model: "gpt-4",
         messages: [
           { role: "system", content: systemPrompt },
-          ...chatHistory.map(msg => ({ role: msg.role, content: msg.content })), // Include previous chat messages for context
+          ...chatHistory.map(msg => ({ role: msg.role, content: msg.content })), 
           { role: "user", content: userPrompt },
         ],
         max_tokens: 500,

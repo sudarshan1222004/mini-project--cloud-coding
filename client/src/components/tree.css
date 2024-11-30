@@ -1,0 +1,32 @@
+.file-tree {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  .file-tree-node {
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  
+  .node-label {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 4px;
+  }
+  
+  .node-label:hover {
+    background-color: #f0f0f0; 
+  }
+  
+  .file-tree-children {
+    list-style-type: none;
+    padding-left: 15px;
+    margin: 0;
+  }
+  
+  
+  .node-label.selected {
+    background-color: #d0eaff;
+  }
+  

@@ -69,7 +69,7 @@ function App() {
   useEffect(() => {
     socket.on("file:refresh", getFileTree);
     return () => socket.off("file:refresh", getFileTree);
-  }, [socket.io]);
+  }, []);
 
   return (
     <div className="playground-container">
