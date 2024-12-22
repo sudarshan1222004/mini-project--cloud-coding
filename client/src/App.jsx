@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Terminal from "./components/terminal";
 import FileTree from "./components/tree";
-import ChatMentor from "./components/ChatMentor"; 
+import ChatMentor from "./components/ChatMentor";
 import socket from "./socket";
 import AceEditor from "react-ace";
 import { getFileMode } from "./utils/getFileMode";
@@ -47,6 +47,7 @@ function App() {
   useEffect(() => {
     setCode(selectedFileContent);
   }, [selectedFileContent]);
+
   const getFileTree = async () => {
     const response = await fetch("http://localhost:9000/files");
     const result = await response.json();
@@ -69,7 +70,7 @@ function App() {
   useEffect(() => {
     socket.on("file:refresh", getFileTree);
     return () => socket.off("file:refresh", getFileTree);
-  }, []);
+  }, [socket.id]);
 
   return (
     <div className="playground-container">
@@ -94,7 +95,7 @@ function App() {
             <>
               <div className="file-info">
                 <p>
-                  {selectedFile.replaceAll("/", " > ")}{" "}
+                  {selectedFile.replaceAll("/", " > ")} {" "}
                   <span className={isSaving ? "saving" : "saved"}>
                     {isSaving ? "Saving..." : isSaved ? "Saved" : ""}
                   </span>
@@ -107,6 +108,14 @@ function App() {
                 theme={theme}
                 value={code}
                 onChange={(e) => setCode(e)}
+                enableBasicAutocompletion={true}
+                enableLiveAutocompletion={true}
+                enableSnippets={true}
+                enableMobileMenu={true}
+                showLineNumbers={true}
+                setOptions={{
+                  useWorker: false,
+                }}
               />
             </>
           ) : (
