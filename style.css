@@ -1,0 +1,405 @@
+/* Basic Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 107%; /* Makes the entire website 7% bigger */
+}
+
+:root {
+    --primary-color: #0077b6; /* LinkedIn Blue */
+    --secondary-color: #50e3c2;
+    --background-color: #0d1117; /* GitHub Dark */
+    --card-background: #161b22;
+    --text-color: #c9d1d9;
+    --light-gray: #8b949e;
+    --inspire-bg: #1A1A1A; /* New color for the aesthetic inspiration */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: rgba(22, 27, 34, 0.9);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201, 209, 217, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--secondary-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    gap: 1.5rem; /* Reduced gap for a more compact look */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--light-gray);
+    font-weight: 500;
+    font-size: 0.95rem; /* Smaller font size for nav links */
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--text-color); /* Updated to a brighter color on hover */
+}
+
+/* --- Hero Section (Home) --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(45deg, #0d1117, #161b22);
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Reduced gap for a more compact look */
+    max-width: 1000px;
+}
+
+.hero-image-container {
+    /* Animation removed */
+}
+
+.profile-image {
+    width: 220px; /* Made the image bigger */
+    height: 220px; /* Made the image bigger */
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 119, 182, 0.4);
+    transition: transform 0.5s ease, border-color 0.5s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05) rotate(3deg);
+    border: 5px solid var(--secondary-color);
+    box-shadow: 0 0 30px rgba(80, 227, 194, 0.6);
+}
+
+.hero-text {
+    text-align: center;
+}
+
+.name {
+    font-size: clamp(2rem, 6vw, 4rem); /* Smaller font size for the name */
+    font-weight: 700;
+    color: var(--text-color);
+    position: relative;
+    cursor: pointer;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    /* Animation removed */
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.name:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.bio {
+    font-size: 1rem; /* Smaller font size for bio */
+    color: var(--light-gray);
+    max-width: 500px;
+    margin: 0.5rem auto; /* Reduced margin */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem; /* Adjusted gap for bigger icons */
+    margin-top: 1rem; /* Reduced margin */
+    animation: fadeIn 2s ease-in-out;
+    justify-content: center;
+}
+
+/* Social icons with original colors and a pop-out animation on hover */
+.social-links a {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a .fa-linkedin { color: #0077b5; }
+.social-links a .fa-github { color: #fff; }
+.social-links a .fa-envelope { color: #d44638; } /* Changed to red */
+.social-links a .fa-file-download { color: #fff; }
+
+
+.social-links a:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Individual icon hover colors to make them slightly brighter */
+.social-links a:hover .fa-linkedin { color: #00a0dc; }
+.social-links a:hover .fa-github { color: #c9d1d9; }
+.social-links a:hover .fa-envelope { color: #ea4335; }
+.social-links a:hover .fa-file-download { color: #c9d1d9; }
+
+
+/* --- General Section Styles --- */
+.section {
+    padding: 5rem 5%; /* Reduced padding */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem; /* Smaller font size for titles */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem; /* Reduced margin */
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: color 0.3s ease;
+}
+
+.section-title:hover {
+    color: var(--secondary-color);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 4px;
+    background: var(--secondary-color);
+    bottom: -10px;
+    left: 15%;
+    border-radius: 2px;
+}
+
+
+/* --- Skills & Projects Sections --- */
+.skills-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    overflow-x: hidden;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Individual skill icon colors - Brand colors */
+.fa-python { color: #306998; }
+.fa-js { color: #f7df1e; }
+.fa-c { color: #a8b9cc; }
+.fa-java { color: #f89820; }
+.fa-html5 { color: #e34c26; }
+.fa-css3-alt { color: #2965f1; }
+.fa-react { color: #61dafb; }
+.fa-bootstrap { color: #563d7c; }
+.fa-database { color: #a8b9cc; }
+.fa-docker { color: #0db7ed; }
+.fa-aws { color: #ff9900; }
+
+.skill-item p {
+    font-size: 0.8rem;
+    color: var(--light-gray);
+    font-weight: 500;
+}
+
+/* Hover effect on skill items */
+.skill-item:hover {
+    transform: scale(1.1);
+}
+
+/* Projects and Certificates Sections now use a card grid */
+.projects-grid, .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card, .certificate-card {
+    background-color: var(--inspire-bg); /* Using the new inspirational background color */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+    animation: card-pop-in 0.8s ease-out forwards;
+}
+
+.project-card:hover, .certificate-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Adjusted animation */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: var(--secondary-color);
+}
+
+.project-card h3, .certificate-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-card p, .certificate-card p {
+    font-size: 0.9rem;
+    color: var(--light-gray);
+}
+
+.project-links a, .certificate-card a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.project-links a:hover, .certificate-card a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Contact Section --- */
+.contact-text {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--light-gray);
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.email-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.email-btn i {
+    margin-right: 0.8rem;
+}
+
+.email-btn:hover {
+    background-color: var(--secondary-color);
+    color: #1e1e1e;
+    transform: translateY(-5px);
+}
+
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--card-background);
+    border-top: 1px solid rgba(201, 209, 217, 0.1);
+    color: var(--light-gray);
+}
+
+/* --- Keyframes & Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-pop-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 5%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    nav ul li {
+        margin: 0 0.5rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        padding-top: 2rem;
+    }
+
+    .hero-image-container {
+        margin-bottom: 1rem;
+    }
+}
